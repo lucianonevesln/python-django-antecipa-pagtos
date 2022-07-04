@@ -1,0 +1,27 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Pagina Inicial</title>
+{% endblock %}
+
+{% block menu %}
+<div class="bg-light">
+    <h3>
+        Antecipação de Pagamentos
+    </h3>
+    <p>
+        Se você deseja solicitar antecipação de parcelas, acesse Fornecedor.<br>
+        Caso queira autorizar alguma parcela, acesse Administrador.
+    </p>
+    <a href="{% url 'fornecedores' %}">Fornecedor: Cadastro</a><br>
+    <a href="{% url 'listar-fornecedores/' %}">Fornecedor: Editar</a><br>
+    <a href="{% url 'parcelas' %}">Parcelas: Inserir</a><br>
+    <a href="{% url 'listar-parcelas/' %}">Parcelas: Listar</a><br>
+    <a href="{% url 'listar-logs/' %}">Logs: Listar</a><br>
+    <a href="{% url 'admin' %}">Administrador</a>
+{% endblock %}
+
+{% block conteudo %}
+{% endblock %}

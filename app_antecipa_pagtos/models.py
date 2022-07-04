@@ -1,0 +1,50 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
+from django.db import models
+
+
+class Fornecedores(models.Model):
+    razao_social = models.CharField(max_length=500)
+    cnpj = models.CharField(max_length=14)
+    email = models.CharField(max_length=100, blank=True, null=True)
+    senha = models.CharField(max_length=500)
+
+    class Meta:
+        managed = False
+        db_table = 'fornecedores'
+
+    def __str__(self):
+        return '{} - {}'.format(self.razao_social, self.cnpj)
+
+
+class Logs(models.Model):
+    id_parcelas = models.ForeignKey('Parcelas', models.DO_NOTHING, db_column='id_parcelas')
+    estado = models.CharField(max_length=22)
+
+    class Meta:
+        managed = False
+        db_table = 'logs'
+
+    def __str__(self):
+        return '{} - {}.'.format(self.id_parcelas, self.estado)
+
+
+class Parcelas(models.Model):
+    id_fornecedor = models.ForeignKey(Fornecedores, models.DO_NOTHING, db_column='id_fornecedor')
+    data_emissao = models.DateTimeField(blank=True, null=True)
+    data_vencimento = models.DateField()
+    data_vencimento_nova = models.DateField(blank=True, null=True)
+    valor_original = models.DecimalField(max_digits=10, decimal_places=2)
+    valor_novo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'parcelas'
+
+    def __str__(self):
+        return 'Fornecedor {} - Vencimento {} - Valor {}.'.format(self.id_fornecedor, self.data_vencimento, self.valor_original)

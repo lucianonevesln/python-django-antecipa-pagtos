@@ -1,0 +1,46 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Lista de Parcelas</title>
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block conteudo %}
+
+<h3>Lista de Parcelas</h3>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>Data de Emissão</th>
+            <th>Data de Vencimento</th>
+            <th>Valor Original</th>
+            <th>Opções</th>
+        </tr>
+        {% for parcela in object_list %}
+
+        <tr>
+            <td>{{ parcela.data_emissao }}</td>
+            <td>{{ parcela.data_vencimento }}</td>
+            <td>{{ parcela.valor_original }}</td>
+            <td>
+                <a href="{% url 'editar-parcelas/' parcela.pk %}" class="btn btn-warning btn-sm" title="Editar Parcela">Editar</a>
+                <a href="{% url 'deletar-parcelas/' parcela.pk %}" class="btn btn-danger btn-sm" title="Excluir Parcela">Excluir</a>
+            </td>
+        </tr>
+
+        {% empty %}
+
+        <tr>
+            <td colspan="3">Sem registro</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

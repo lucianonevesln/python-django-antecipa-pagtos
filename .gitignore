@@ -1,0 +1,9 @@
+venv/
+
+instrucoes.txt
+
+app_antecipa_pagtos/__pycache__/
+
+app_antecipa_pagtos/migrations/__pycache__/
+
+pagamentos/__pycache__/

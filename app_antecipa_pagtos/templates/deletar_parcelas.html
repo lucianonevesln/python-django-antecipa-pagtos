@@ -1,0 +1,26 @@
+{% extends 'modelo.html' %}
+
+{% load static %}
+
+{% block titulo %}
+<title>Pacelas</title>
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block conteudo %}
+
+<h3>Deletar Parcelas</h3>
+
+<p class="lead">
+    Você realmente deseja excluir o registro: <strong>{{ object }}</strong>.
+</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-danger">Deletar</button>
+</form>
+
+{% endblock %}
